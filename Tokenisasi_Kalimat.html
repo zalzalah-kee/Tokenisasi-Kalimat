@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tokenisasi Kalimat</title>
+    </head>
+    <body>
+        <input type="text" name="kalimat" id="kalimat" style="width: 100%; padding: 5px 15px; border: none; background-color: #f1f1f1; outline: none;">
+        <P id="inputan"></P>
+        <p id="inputan_length"></p>
+        <script>
+            function tokenisasi(value) {
+                words = value.split(" ")
+                wordmap = {}
+
+                for (let i = 0; i < words.length; i++) {
+                    let currentWordCount = wordmap[words[i]];
+                    let count = currentWordCount ? currentWordCount : 0;
+                    wordmap[words[i]] = count + 1;
+                }
+                document.getElementById('inputan').innerHTML = words.join("<br />");
+                document.getElementById('inputan_length').innerHTML = `Dari inputan Terdeteksi bahwa ${Object.keys(wordmap).length} kata.`;
+            }
+
+            document.getElementById('kalimat').addEventListener('keyup', event => {
+                tokenisasi(event.target.value)
+            })
+        </script>
+    </body>
+</html>
